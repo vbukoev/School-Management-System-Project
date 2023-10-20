@@ -44,7 +44,7 @@ namespace SchoolManagementSystem.Admin
                 }
                 else
                 {
-                    lblMsg.Text = "Entered Class already exists";
+                    lblMsg.Text = "Entered Class already exists!";
                     lblMsg.CssClass = "alert alert-danger";
                 }
             }
@@ -79,7 +79,7 @@ namespace SchoolManagementSystem.Admin
                 int cId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
                 string ClassName = (row.FindControl("txtClassEdit") as TextBox).Text;
                 fn.Query("Update Class set ClassName = '"+ClassName+"' where ClassId = '"+ cId+ "'");
-                lblMsg.Text = "Inserted Successfully!";
+                lblMsg.Text = "Class Updated Successfully!";
                 lblMsg.CssClass = "alert alert-success";
                 GridView1.EditIndex = -1;
                 GetClass();
