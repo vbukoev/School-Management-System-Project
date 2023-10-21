@@ -119,7 +119,6 @@ namespace SchoolManagementSystem.Admin
             {
                 Response.Write("<script>alert('"+exception.Message+ "')</script>");
             }
-
         }
     }
 }
