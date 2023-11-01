@@ -62,6 +62,7 @@ namespace SchoolManagementSystem.Admin
             ddlSubject.DataBind();
             ddlSubject.Items.Insert(0, "Select Teacher");
         }
+        сс
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
