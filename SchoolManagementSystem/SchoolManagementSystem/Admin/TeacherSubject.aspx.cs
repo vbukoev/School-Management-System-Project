@@ -51,6 +51,7 @@ namespace SchoolManagementSystem.Admin
                            inner join Class c on ts.ClassId = c.ClassId 
                            inner join Subject s on ts.SubjectId = s.SubjectId
                            inner join Teacher t on ts.TeacherId = t.TeacherId");
+
             GridView1.DataSource = dt;
             GridView1.DataBind();
         }
