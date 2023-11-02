@@ -45,6 +45,7 @@
                     <asp:TemplateField HeaderText="Class"> <%-- CLASS template field --%>
                         <EditItemTemplate>
                             <asp:DropDownList ID="ddlClassGv" runat="server" DataSourceID="SqlDataSource1" DataTextField="ClassName" DataValueField="ClassId" SelectedValue='<%# Eval("ClassId") %>' CssClass="form-control" AutoPostBack="True">
+                                <asp:ListItem>Select Class</asp:ListItem>
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SchoolCS %>" SelectCommand="SELECT * FROM [Class]"></asp:SqlDataSource>
                         </EditItemTemplate>
@@ -56,8 +57,7 @@
 
                     <asp:TemplateField HeaderText="Subject"> <%-- SUBJECT template field --%>
                         <EditItemTemplate>
-                            <asp:DropDownList ID="ddlSubjectGv" runat="server" DataSourceID="SqlDataSource1" SelectedValue='<%# Eval("SubjectName") %>' CssClass="form-control">
-                            </asp:DropDownList>
+                            <asp:DropDownList ID="ddlSubjectGv" runat="server" CssClass="form-control"></asp:DropDownList>
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server" Text='<%# Eval("SubjectName") %>'></asp:Label>

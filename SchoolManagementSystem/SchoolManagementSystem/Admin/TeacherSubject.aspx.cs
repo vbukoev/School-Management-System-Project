@@ -47,7 +47,10 @@ namespace SchoolManagementSystem.Admin
         {
             DataTable dt =
                 fn.Fetch(
-                    @"Select Row_NUMBER() over(Order by(select 1)) as [Sr.No], ts.Id, ts.ClassId, c.ClassName, ts.SubjectId, s.SubjectName, ts.TeacherId, t.Name from TeacherSubject ts inner join Class c on ts.ClassId = c.ClassId inner join Subject s on ts.SubjectId = s.SubjectId inner join Teacher t on ts.TeacherId = t.TeacherId");
+                    @"Select Row_NUMBER() over(Order by(Select 1)) as [Sr.No], ts.Id, ts.ClassId, c.ClassName, ts.SubjectId, s.SubjectName, ts.TeacherId, t.Name from TeacherSubject ts 
+                           inner join Class c on ts.ClassId = c.ClassId 
+                           inner join Subject s on ts.SubjectId = s.SubjectId
+                           inner join Teacher t on ts.TeacherId = t.TeacherId");
             GridView1.DataSource = dt;
             GridView1.DataBind();
         }
@@ -55,14 +58,13 @@ namespace SchoolManagementSystem.Admin
         protected void ddlClass_SelectedIndexChanged(object sender, EventArgs e)
         {
             string classId = ddlClass.SelectedValue;
-            DataTable dt = fn.Fetch("Select * From Subject where ClassId = '" + classId + "' "); 
+            DataTable dt = fn.Fetch("Select * from Subject where ClassId = '" + classId + "' "); //query
             ddlSubject.DataSource = dt;
             ddlSubject.DataTextField = "SubjectName";               //GETSUBJECT() method is implemented here
             ddlSubject.DataValueField = "SubjectId";
             ddlSubject.DataBind();
             ddlSubject.Items.Insert(0, "Select Teacher");
         }
-        сс
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
@@ -72,10 +74,11 @@ namespace SchoolManagementSystem.Admin
                 string subjectId = ddlSubject.SelectedValue;
                 string teacherId = ddlTeacher.SelectedValue;
 
-                DataTable dt = fn.Fetch("Select * from TeacherSubject where ClassId = '" + classId + "' and SubjectId='" + subjectId + "' and TeacherId = '" + teacherId + "'");
+                DataTable dt = fn.Fetch("Select * from TeacherSubject where ClassId = '" + classId + 
+                                        "' and SubjectId = '" + subjectId + "' and TeacherId = '" + teacherId + "'");
                 if (dt.Rows.Count == 0)
                 {
-                    string query = "Insert into Subject values('" + classId + "','" + subjectId + "', '" + teacherId + "')";
+                    string query = "Insert into TeacherSubject values('" + classId + "','" + subjectId + "', '" + teacherId + "')";
                     fn.Query(query);
                     lblMsg.Text = "Inserted Successfully!";
                     lblMsg.CssClass = "alert alert-success";
