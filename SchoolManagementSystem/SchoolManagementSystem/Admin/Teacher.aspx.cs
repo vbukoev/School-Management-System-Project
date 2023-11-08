@@ -39,7 +39,7 @@ namespace SchoolManagementSystem.Admin
                     DataTable dt = fn.Fetch("Select * from Teacher where Email = '" + email + "'");
                     if (dt.Rows.Count == 0)
                     {
-                        string query = "Insert into Teacher values ('"+txtName.Text.Trim()+ "', '"+txtDoB.Text.Trim()+ "', '"+ ddlGender.SelectedValue+"', '"+txtMobile.Text.Trim()+ "', '"+txtEmail.Text.Trim()+ "', '"+txtAddress.Text.Trim()+"', '"+txtPassword.Text.Trim()+"')";
+                        string query = "Insert into Teacher values ('"+txtName.Text.Trim()+ "', '"+txtDoB.Text.Trim()+ "', '"+ ddlGender.SelectedValue+"', '"+txtMobile.Text.Trim()+ "', '"+txtEmail.Text.Trim()+ "', '"+txtAddress.Text.Trim()+"', '"+txtPassword.Text.Trim()+"') ";
                         fn.Query(query);
                         lblMsg.Text = "Inserted Successfully!";
                         lblMsg.CssClass = "alert alert-success";
@@ -87,7 +87,7 @@ namespace SchoolManagementSystem.Admin
             try
             {
                 int teacherId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
-                fn.Query("Delete from Teacher where teacherId = '" + teacherId + "'");
+                fn.Query("Delete from Teacher where TeacherId = '" + teacherId + "'");
                 lblMsg.Text = "Teacher Deleted Successfully!";
                 lblMsg.CssClass = "alert alert-success";
                 GridView1.EditIndex = -1;
@@ -101,7 +101,7 @@ namespace SchoolManagementSystem.Admin
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            GridView1.EditIndex = -1;   
+            GridView1.EditIndex = e.NewEditIndex;   
             GetTeachers();
 
         }
@@ -115,7 +115,7 @@ namespace SchoolManagementSystem.Admin
                 string mobile = (row.FindControl("txtMobile") as TextBox).Text;
                 string password = (row.FindControl("txtPassword") as TextBox).Text;
                 string address = (row.FindControl("txtAddress") as TextBox).Text;
-                fn.Query("Update Teacher set Name = '" + name.Trim() + "', Mobile = '" + mobile.Trim() + "', Address = '" + address.Trim() + "', Password = '" + password.Trim() + "' where TeacherId = '"+teacherId+"'");
+                fn.Query("Update Teacher set Name = '" + name.Trim() + "', Mobile = '" + mobile.Trim() + "', Address = '" + address.Trim() + "', Password = '" + password.Trim() + "' where TeacherId = '"+ teacherId +"'");
                 lblMsg.Text = "Teacher Updated Successfully!";
                 lblMsg.CssClass = "alert alert-success";
                 GridView1.EditIndex = -1;
