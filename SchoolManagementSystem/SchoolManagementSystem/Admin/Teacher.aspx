@@ -16,6 +16,7 @@
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Name should be in Characters" ForeColor="Red" ValidationExpression="^[a-zA-Z\s]+$" Display="Dynamic" SetFocusOnError="True" ControlToValidate="txtName"></asp:RegularExpressionValidator>
             </div>
 
+
             <div class="col-md-6">
                 <label for="txtDoB">Date of Birth</label>
                 <asp:TextBox ID="txtDoB" runat="server" CssClass="form-control" TextMode="Date" required></asp:TextBox>
