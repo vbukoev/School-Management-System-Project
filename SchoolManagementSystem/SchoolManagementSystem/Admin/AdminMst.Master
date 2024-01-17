@@ -6,29 +6,44 @@
     <title>School Management System</title>
     <meta charset="UTF-8">
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
-    <script src ="https://kit.fontawesome.com/b99e675b6e.js"> </script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"> </script>
     <link href="../Content/styles.css" rel="stylesheet" />
 
     <script src="../Scripts/jquery-3.0.0.min.js"></script>
     <script src="../Scripts/popper.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
 
-        <script>
-            $(document).ready(function () {
-                $(".siderbar_menu li").click(function () {
-                    $(".siderbar_menu li").removeClass("active");
-                    $(this).addClass("active");
-                });
-
-                $(".hamburger").click(function () {
-                    $(".wrapper").addClass("active");
-                });
-
-                $(".close, .bg_shadow").click(function () {
-                    $(".wrapper").removeClass("active");
-                });
+    <script>
+        $(document).ready(function () {
+            $(".siderbar_menu li").click(function () {
+                $(".siderbar_menu li").removeClass("active");
+                $(this).addClass("active");
             });
-        </script>
+
+            $(".hamburger").click(function () {
+                $(".wrapper").addClass("active");
+            });
+
+            $(".close, .bg_shadow").click(function () {
+                $(".wrapper").removeClass("active");
+            });
+        });
+    </script>
+
+    <%--Making menu selected for active page--%>
+    <script>
+        $(function () {
+            // this will get the full URL at the address bar
+            var url = window.location.href;
+            // passes on every "a" tag
+            $("#sub-header a").each(function () {
+                // checks if its the same on the address bar
+                if (url == (this.href)) {
+                    $(this).closest("li").addClass("active");
+                }
+            });
+        });
+    </script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -39,7 +54,7 @@
         <div class="wrapper">
             <div class="sidebar">
                 <div class="bg_shadow"></div>
-                <div class="sidebar_inner">
+                <div class="sidebar_inner" id="sub-header">
                     <div class="close">
                         <i class="fas fa-times"></i>
                     </div>
@@ -99,7 +114,7 @@
                             </a>
                             <ul class="accordion">
                                 <li><a href="../Admin/Student.aspx" class="active"><i class="fas fa-users pr-1"></i>Add Students</a></li>
-                                <li><a href="../Admin/StudAttendanceDetails.aspx" class="active"><i class="far fa-list-alt pr-1"></i>Attendance Details</a></li>
+                                <li><a href="../Admin/StudentAttendanceDetails.aspx" class="active"><i class="far fa-list-alt pr-1"></i>Attendance Details</a></li>
                             </ul>
 
                         </li>
@@ -127,7 +142,7 @@
                         </li>
                     </ul>
                     <div class="logout_btn">
-                        <asp:LinkButton ID="btnLogOut" runat="server" CausesValidation="false">Logout</asp:LinkButton>
+                        <asp:LinkButton ID="btnLogOut" runat="server" CausesValidation="false" OnClick="btnLogOut_Click">Logout</asp:LinkButton>
                     </div>
 
                 </div>
