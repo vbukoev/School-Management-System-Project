@@ -14,6 +14,11 @@ namespace SchoolManagementSystem.Admin
         private CommonFnx fn = new CommonFnx();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["admin"] == null)
+            {
+                Response.Redirect("../Login.aspx");
+            }
+
             if (!IsPostBack)
             {
                 GetTeachers();
